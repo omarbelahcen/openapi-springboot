@@ -1,14 +1,18 @@
+server:
+  port: 8081
 
 spring:
   profiles:
     active: dev
-server:
-  port: 8080
-
-
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${oauth2.server.issuer.url:http://localhost:8080/realms/openai-realm}/realms/my-realm}
+          jwk-set-uri: ${oauth2.server.jwk.url:http://localhost:8080/realms/openai-realm/protocol/openid-connect/certs}
 
 openai:
   model: gpt-3.5-turbo
   api:
-    key: ${OPEN_API_KEY}
+    key: ${OPEN_API_KEY:}
     url: https://api.openai.com/v1/chat/completions

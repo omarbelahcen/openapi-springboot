@@ -1,6 +1,6 @@
 package com.api.openapiapp.dto;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,10 +14,9 @@ public class ChatRequest {
     private String model;
     private List<Message> messages;
 
-    public ChatRequest(String model, String prompt) {
+    public ChatRequest(String model, List<Message> messages) {
         this.model = model;
-        this.messages = new ArrayList<>();
-        this.messages.add(new Message("user", prompt));
+        this.messages = messages;
     }
 
 }
